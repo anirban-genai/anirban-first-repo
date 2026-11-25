@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-test
+  namespace: hello-world-test
+  labels:
+    app: hello-world-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world-test
+  template:
+    metadata:
+      labels:
+        app: hello-world-test
+    spec:
+      containers:
+        - name: hello-world-test
+          image: hello_world_test:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FIB_DEFAULT_N
+              value: "10"
+            - name: API_SECRET_KEY
+              value: "super-secret-value-123"
